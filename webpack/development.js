@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const { merge, file, scriptPipeline, stylePipeline, minify } = require('./shared.js')
+const { merge, file, scriptPipeline, stylePipeline, minify, devServer } = require('./shared.js')
 
 process.env['JS_KNIFE'] = '1'
 
@@ -8,6 +8,7 @@ module.exports = [
   { ...file('./lib/assets/javascripts/unpoly.js', 'unpoly.development.es5.js'),
     ...scriptPipeline('ES5', { rubyEnv: { JS_KNIFE: 1 }}),
     ...minify(false),
+    ...devServer(9000) // Webpack 5 only wants a single dev server config in the first exported configuration
   },
 
   { ...file('./lib/assets/javascripts/unpoly.js', 'unpoly.development.esnext.js'),
@@ -32,5 +33,6 @@ module.exports = [
         getJasmineRequireObj: [__dirname + '/get_jasmine_require_obj.js', 'default'],
       })]
     }
-  )
+  ),
+
 ]

@@ -17,11 +17,6 @@ function file(srcPath, outputFilename) {
       // publicPath: '/',
       filename: outputFilename,
     },
-    devServer: {
-      contentBase: './dist',
-      writeToDisk: true,
-      // contentBasePublicPath: '/dist'
-    }
   }
 }
 
@@ -119,7 +114,7 @@ function merge(...configs) {
   return merged
 }
 
-stylePipeline = function() {
+function stylePipeline() {
   return {
     plugins: [
       new MiniCssExtractPlugin({
@@ -150,4 +145,14 @@ stylePipeline = function() {
   }
 }
 
-module.exports = { merge, file, scriptPipeline, stylePipeline, minify }
+function devServer(port) {
+  return {
+    devServer: {
+      port,
+      contentBase: './dist',
+      writeToDisk: true,
+    }
+  }
+}
+
+module.exports = { merge, file, scriptPipeline, stylePipeline, minify, devServer }

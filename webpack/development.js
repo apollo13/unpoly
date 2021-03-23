@@ -27,8 +27,7 @@ module.exports = [
     scriptPipeline('ES5'),
     stylePipeline(),
     minify(false),
-    { node: { fs: 'empty' }, // fix "Error: Can't resolve 'fs'
-      plugins: [new webpack.ProvidePlugin({
+    { plugins: [new webpack.ProvidePlugin({
         jasmineRequire: 'jasmine-core/lib/jasmine-core/jasmine.js',
         getJasmineRequireObj: [__dirname + '/get_jasmine_require_obj.js', 'default'],
       })]

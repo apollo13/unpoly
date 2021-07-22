@@ -38,6 +38,8 @@
   "homepage": "https://unpoly.com",
   "dependencies": {},
   "devDependencies": {
+    "@swc/core": "^1.2.66",
+    "@swc/helpers": "^0.2.12",
     "coffee-loader": "^2.0.0",
     "coffeescript": "*",
     "css-loader": "^3.6.0",
@@ -56,6 +58,7 @@
     "rails-erb-loader": "^5.5.2",
     "sass": "^1.32.4",
     "sass-loader": "^8.0.2",
+    "swc-loader": "^0.1.14",
     "ts-loader": "^8.0.14",
     "typescript": "^4.1.3",
     "webpack": "^5.15.0",

@@ -51,6 +51,17 @@ function scriptPipeline(target, options = {}) {
     }
   }
 
+  let swcLoader = {
+    loader: "swc-loader",
+    options: {
+      jsc: {
+        target: target,
+        loose: true,
+        externalHelpers: true
+      }
+    }
+  }
+
   let coffeeLoader = {
     loader: 'coffee-loader'
   }
@@ -61,22 +72,22 @@ function scriptPipeline(target, options = {}) {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          use: [tsLoader]
+          use: [swcLoader]
         },
         {
           test: /\.coffee$/,
           exclude: /node_modules/,
-          use: [tsLoader, coffeeLoader]
+          use: [swcLoader, coffeeLoader]
         },
         {
           test: /\.js\.erb$/,
           exclude: /node_modules/,
-          use: [tsLoader, erbLoader]
+          use: [swcLoader, erbLoader]
         },
         {
           test: /\.coffee\.erb$/,
           exclude: /node_modules/,
-          use: [tsLoader, coffeeLoader, erbLoader]
+          use: [swcLoader, coffeeLoader, erbLoader]
         }
       ]
     },

@@ -1,8 +1,25 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ClosurePlugin = require('closure-webpack-plugin')
 
 function minify(doMinify) {
-  return { mode: doMinify ? 'production' : 'none' }
+  return {
+    mode: doMinify ? 'production' : 'none',
+
+    optimization: {
+      minimizer: [
+        new ClosurePlugin({mode: 'AGGRESSIVE_BUNDLE'}, {
+          // compiler flags here
+          //
+          // for debugging help, try these:
+          //
+          // formatting: 'PRETTY_PRINT'
+          // debug: true,
+          // renaming: false
+        })
+      ]
+    }
+  }
 }
 
 function file(srcPath, output) {

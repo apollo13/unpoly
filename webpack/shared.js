@@ -36,6 +36,17 @@ function scriptPipeline(target, options = {}) {
     }
   }
 
+  let babelTargets = target === 'ES5' ? 'ie 11' : '> 1%, last 2 versions, Firefox ESR, not dead'
+
+  let babelLoader = {
+    loader: 'babel-loader',
+    options: {
+      presets: [
+        ['@babel/preset-env', { targets: babelTargets }]
+      ]
+    }
+  }
+
   let tsLoader = {
     loader: 'ts-loader',
     options: {
@@ -66,17 +77,17 @@ function scriptPipeline(target, options = {}) {
         {
           test: /\.coffee$/,
           exclude: /node_modules/,
-          use: [tsLoader, coffeeLoader]
+          use: [babelLoader, coffeeLoader]
         },
         {
           test: /\.js\.erb$/,
           exclude: /node_modules/,
-          use: [tsLoader, erbLoader]
+          use: [babelLoader, erbLoader]
         },
         {
           test: /\.coffee\.erb$/,
           exclude: /node_modules/,
-          use: [tsLoader, coffeeLoader, erbLoader]
+          use: [babelLoader, coffeeLoader, erbLoader]
         }
       ]
     },

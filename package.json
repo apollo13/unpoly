@@ -38,6 +38,9 @@
   "homepage": "https://unpoly.com",
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "babel-loader": "^8.2.2",
     "coffee-loader": "^2.0.0",
     "coffeescript": "*",
     "css-loader": "^3.6.0",

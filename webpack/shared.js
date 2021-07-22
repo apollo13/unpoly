@@ -51,6 +51,10 @@ function scriptPipeline(target, options = {}) {
     }
   }
 
+  let decaffeinateLoader = {
+    loader: './webpack/decaffeinate-loader'
+  }
+
   let coffeeLoader = {
     loader: 'coffee-loader'
   }
@@ -66,7 +70,7 @@ function scriptPipeline(target, options = {}) {
         {
           test: /\.coffee$/,
           exclude: /node_modules/,
-          use: [tsLoader, coffeeLoader]
+          use: [tsLoader, decaffeinateLoader]
         },
         {
           test: /\.js\.erb$/,
@@ -76,7 +80,7 @@ function scriptPipeline(target, options = {}) {
         {
           test: /\.coffee\.erb$/,
           exclude: /node_modules/,
-          use: [tsLoader, coffeeLoader, erbLoader]
+          use: [tsLoader, decaffeinateLoader, erbLoader]
         }
       ]
     },
